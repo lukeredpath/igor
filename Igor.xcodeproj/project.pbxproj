@@ -776,7 +776,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OBJROOT = "$(SYMROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)$(CURRENT_PROJECT_VERSION)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SYMROOT = "$(PROJECT_DIR)/build";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -807,7 +807,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OBJROOT = "$(SYMROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)$(CURRENT_PROJECT_VERSION)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SYMROOT = "$(PROJECT_DIR)/build";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -818,7 +818,6 @@
 		E621659DB794A5D612DCD41F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1.0;
 				DSTROOT = /tmp/igor.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "igor/Igor-Prefix.pch";
@@ -831,7 +830,6 @@
 		E621659DB794A5D612DCD420 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1.0;
 				DSTROOT = /tmp/igor.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "igor/Igor-Prefix.pch";
