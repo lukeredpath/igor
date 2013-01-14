@@ -37,6 +37,7 @@
 		2DCE893715193E8900B975EE /* DEChainParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCE893515193E8900B975EE /* DEChainParser.m */; };
 		2DCE893B15193F6100B975EE /* DEInstanceParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DCE893915193F6100B975EE /* DEInstanceParser.h */; };
 		2DCE893C15193F6100B975EE /* DEInstanceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCE893A15193F6100B975EE /* DEInstanceParser.m */; };
+		A3DD9EB116A47AA700B665B5 /* PositionPatternTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DD9EB016A47AA700B665B5 /* PositionPatternTests.m */; };
 		E621659DB794A5D612DCD443 /* DEQueryScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E621659DB794A5D612DCD442 /* DEQueryScanner.m */; };
 		E621659DB794A5D612DCD445 /* DEQueryScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E621659DB794A5D612DCD444 /* DEQueryScanner.h */; };
 		E621659DB794A5D612DCD449 /* DEChainMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = E621659DB794A5D612DCD448 /* DEChainMatcher.h */; };
@@ -165,6 +166,7 @@
 		2DCE893915193F6100B975EE /* DEInstanceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEInstanceParser.h; sourceTree = "<group>"; };
 		2DCE893A15193F6100B975EE /* DEInstanceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEInstanceParser.m; sourceTree = "<group>"; };
 		2DCF9766147ED3FD003B0F38 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A3DD9EB016A47AA700B665B5 /* PositionPatternTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionPatternTests.m; sourceTree = "<group>"; };
 		E621659DB794A5D612DCD425 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E621659DB794A5D612DCD437 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		E621659DB794A5D612DCD439 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -326,6 +328,7 @@
 		E621659DB794A5D612DCD50E /* acceptance */ = {
 			isa = PBXGroup;
 			children = (
+				A3DD9EB016A47AA700B665B5 /* PositionPatternTests.m */,
 				E621659DB794A5D612DCD515 /* SiblingPatternTests.m */,
 				2D99DB321517E94B00244226 /* SubjectMarkerTests.m */,
 				2D695CD4147CD1D200AF4115 /* PredicatePatternTests.m */,
@@ -655,6 +658,7 @@
 				E621659DB794A5D612DCD53A /* DEQueryScanner.m in Sources */,
 				E621659DB794A5D612DCD53B /* DEIgor.m in Sources */,
 				E621659DB794A5D612DCD53C /* DECombinatorParser.m in Sources */,
+				A3DD9EB116A47AA700B665B5 /* PositionPatternTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
