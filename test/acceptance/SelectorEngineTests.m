@@ -13,44 +13,7 @@
 
 @interface DEIgorSelfRegisteringSelectorEngine : NSObject
 - (id)initWithIgor:(DEIgor *)igor;
-- (NSArray *)selectViewsWithSelector:(NSString *)query;
-@end
-
-@interface UIApplication (WindowRegistration)
-
-/* This method is implemented in Frank as a category and uses 
- * method swizzling to register all initialised windows in the app.
- *
- * This is a simpler implementation that allow for deterministic
- * registering of windows for testing purposes.
- */
-- (NSArray *)FEX_windows;
-- (void)FEX_registerWindow:(UIWindow *)window;
-
-@end
-
-@implementation UIApplication (WindowRegistration)
-
-- (NSMutableArray *)FEX_registeredWindows
-{
-  NSMutableArray *registeredWindows = objc_getAssociatedObject(self, "FEX_registeredWindows");
-  if (registeredWindows == nil) {
-    registeredWindows = [[NSMutableArray alloc] init];
-    objc_setAssociatedObject(self, "FEX_registeredWindows", registeredWindows, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-  }
-  return registeredWindows;
-}
-
-- (NSArray *)FEX_windows
-{
-  return [[self FEX_registeredWindows] copy];
-}
-
-- (void)FEX_registerWindow:(UIWindow *)window
-{
-  [[self FEX_registeredWindows] addObject:window];
-}
-
+- (NSArray *)selectViewsWithSelector:(NSString *)query inWindows:(NSArray *)windows;
 @end
 
 @interface SelectorEngineRegistry : NSObject
@@ -67,7 +30,7 @@
 
 @implementation SelectorEngineTests
 
-- (void)testFindsViewsAcrossAllRegisteredWindows
+- (void)testFindsViewsAcrossAllGivenWindows
 {
   DEIgor *igor = [DEIgor igor];
   DEIgorSelfRegisteringSelectorEngine *engine = [[DEIgorSelfRegisteringSelectorEngine alloc] initWithIgor:igor];
@@ -84,13 +47,7 @@
   [windowTwo addSubview:rootTwo];
   [rootTwo addSubview:middleTwo];
   
-  UIApplication *application = [UIApplication sharedApplication];
-  NSLog(@"Windows %@", [application FEX_windows]);
-  [application FEX_registerWindow:windowOne];
-  [application FEX_registerWindow:windowTwo];
-  NSLog(@"Windows %@", [application FEX_windows]);
-  
-  NSArray *matchingViews = [engine selectViewsWithSelector:@"#root > #middle"];
+  NSArray *matchingViews = [engine selectViewsWithSelector:@"#root > #middle" inWindows:@[windowOne, windowTwo]];
   assertThat(matchingViews, containsInAnyOrder(middleOne, middleTwo, nil));
 }
 

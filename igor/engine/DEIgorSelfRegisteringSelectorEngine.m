@@ -2,6 +2,7 @@
 
 @protocol SelectorEngine
 - (NSArray *)selectViewsWithSelector:(NSString *)query;
+- (NSArray *)selectViewsWithSelector:(NSString *)query inWindows:(NSArray *)windows;
 @end
 
 @interface SelectorEngineRegistry
@@ -40,25 +41,19 @@
 }
 
 - (NSArray *)selectViewsWithSelector:(NSString *)query {
-  NSArray *foundViews;
-  UIApplication *application = [UIApplication sharedApplication];
-  
-  // check this exists so as not to break compatibility with old versions of Frank
-  if ([application respondsToSelector:@selector(FEX_windows)]) {
-    NSMutableArray *combinedResults = [NSMutableArray array];
-    
-    for (UIWindow *window in [application FEX_windows]) {
-	    NSArray *results = [_igor findViewsThatMatchQuery:query inTree:window];
-      [combinedResults addObjectsFromArray:results];
-	  }
-    foundViews = [combinedResults copy];
-  }
-  else {
-    UIView *tree = [application keyWindow];
-    foundViews = [_igor findViewsThatMatchQuery:query inTree:tree];
-  }
+  // the 'windows' method might not include all system windows, but is used for compatibility
+  return [self selectViewsWithSelector:query inWindows:[[UIApplication sharedApplication] windows]];
+}
 
-  return foundViews;
+- (NSArray *)selectViewsWithSelector:(NSString *)query inWindows:(NSArray *)windows
+{
+  NSMutableArray *combinedResults = [NSMutableArray array];
+  
+  for (UIWindow *window in windows) {
+    NSArray *results = [_igor findViewsThatMatchQuery:query inTree:window];
+    [combinedResults addObjectsFromArray:results];
+  }
+  return [combinedResults copy];
 }
 
 @end
