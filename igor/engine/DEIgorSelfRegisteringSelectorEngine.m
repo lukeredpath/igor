@@ -8,6 +8,10 @@
 +(void)registerSelectorEngine:(id <SelectorEngine>)engine WithName:(NSString *)name;
 @end
 
+@interface UIApplication (FEXWindows)
+- (NSArray *)FEX_windows;
+@end
+
 @interface DEIgorSelfRegisteringSelectorEngine : NSObject <SelectorEngine>
 @end
 
@@ -36,8 +40,25 @@
 }
 
 - (NSArray *)selectViewsWithSelector:(NSString *)query {
-    UIView *tree = [[UIApplication sharedApplication] keyWindow];
-    return [_igor findViewsThatMatchQuery:query inTree:tree];
+  NSArray *foundViews;
+  UIApplication *application = [UIApplication sharedApplication];
+  
+  // check this exists so as not to break compatibility with old versions of Frank
+  if ([application respondsToSelector:@selector(FEX_windows)]) {
+    NSMutableArray *combinedResults = [NSMutableArray array];
+    
+    for (UIWindow *window in [application FEX_windows]) {
+	    NSArray *results = [_igor findViewsThatMatchQuery:query inTree:window];
+      [combinedResults addObjectsFromArray:results];
+	  }
+    foundViews = [combinedResults copy];
+  }
+  else {
+    UIView *tree = [application keyWindow];
+    foundViews = [_igor findViewsThatMatchQuery:query inTree:tree];
+  }
+
+  return foundViews;
 }
 
 @end
